@@ -61,6 +61,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="hexo-savings" class="article article-type-hexo" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/19/savings/" class="article-date">
+  <time datetime="2018-02-19T15:23:12.000Z" itemprop="datePublished">2018-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/19/savings/">定投复利公式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##定投福利推算<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">第一年末 = A + A * i = A(<span class="number">1</span> + i)</div><div class="line">第二年末 = [A + A(<span class="number">1</span> + i)] + [A + A(<span class="number">1</span> + i)] * i</div><div class="line">		 = [A + A(<span class="number">1</span> + i)](<span class="number">1</span> + i)</div><div class="line">		 = A[<span class="number">1</span> + (<span class="number">1</span> + i)](<span class="number">1</span> + i)</div><div class="line">		 = A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]</div><div class="line">第三年末 = &#123;A + A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]&#125; + &#123;A + A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]&#125; * i</div><div class="line">		 = &#123;A + A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]&#125;(<span class="number">1</span> + i)</div><div class="line">		 = A&#123;[<span class="number">1</span> + (<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]&#125;(<span class="number">1</span> + i)</div><div class="line">		 = A&#123;(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span> + (<span class="number">1</span> + i)^<span class="number">3</span>&#125;</div><div class="line">以此类推：</div><div class="line">第n年末 = A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span> + (<span class="number">1</span> + i)^<span class="number">3</span> + ... + (<span class="number">1</span> + i)^n</div></pre></td></tr></table></figure> </p>
+<p>##等比通项式<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">设q = (<span class="number">1</span> + i)</div><div class="line">Sn = A(q + q^<span class="number">2</span> + q^<span class="number">3</span> + ... + q^n) ①</div><div class="line">q * Sn = A[q^<span class="number">2</span> + q^<span class="number">3</span> +  q^<span class="number">4</span> + ... + q^(n+<span class="number">1</span>)] ②</div><div class="line">② - ①</div><div class="line">q * Sn - Sn = A[q^<span class="number">2</span> + q^<span class="number">3</span> + q^<span class="number">4</span> + ... + q^(n+<span class="number">1</span>)] - A(q + q^<span class="number">2</span> + q^<span class="number">3</span> + ... + q^n)</div><div class="line">(q - <span class="number">1</span>)Sn = A[q^(n+<span class="number">1</span>) - q]</div><div class="line">Sn = Aq(q^n <span class="number">-1</span>) / (q - <span class="number">1</span>)</div></pre></td></tr></table></figure> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/02/19/savings/" data-id="cjdue47250001aji2fnfh4yna" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="hexo-blog" class="article article-type-hexo" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/02/08/blog/" class="article-date">
@@ -94,7 +132,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/08/blog/" data-id="cjdfj5wgr0000brru4b2me70v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/02/08/blog/" data-id="cjdue47220000aji2o5er0fur" class="article-share-link">Share</a>
       
       
     </footer>
@@ -139,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/28/hello-world/" data-id="cjdfj5wh40001brrufk9aajm5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/28/hello-world/" data-id="cjdue47270002aji2yjv1n8ol" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,6 +215,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/02/19/savings/">定投复利公式</a>
+          </li>
         
           <li>
             <a href="/2018/02/08/blog/">Hexo + Github搭建自己的博客</a>
