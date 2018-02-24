@@ -84,11 +84,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="定投复利推算"><a href="#定投复利推算" class="headerlink" title="定投复利推算"></a>定投复利推算</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">第一年末 = A + A * i = A(<span class="number">1</span> + i)</div><div class="line">第二年末 = [A + A(<span class="number">1</span> + i)] + [A + A(<span class="number">1</span> + i)] * i</div><div class="line">		 = [A + A(<span class="number">1</span> + i)](<span class="number">1</span> + i)</div><div class="line">		 = A[<span class="number">1</span> + (<span class="number">1</span> + i)](<span class="number">1</span> + i)</div><div class="line">		 = A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]</div><div class="line">第三年末 = &#123;A + A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]&#125; + &#123;A + A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]&#125; * i</div><div class="line">		 = &#123;A + A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]&#125;(<span class="number">1</span> + i)</div><div class="line">		 = A&#123;[<span class="number">1</span> + (<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span>]&#125;(<span class="number">1</span> + i)</div><div class="line">		 = A&#123;(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span> + (<span class="number">1</span> + i)^<span class="number">3</span>&#125;</div><div class="line">以此类推：</div><div class="line">第n年末 = A[(<span class="number">1</span> + i) + (<span class="number">1</span> + i)^<span class="number">2</span> + (<span class="number">1</span> + i)^<span class="number">3</span> + ... + (<span class="number">1</span> + i)^n</div></pre></td></tr></table></figure> 
-<h2 id="等比通项式"><a href="#等比通项式" class="headerlink" title="等比通项式"></a>等比通项式</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">设q = (<span class="number">1</span> + i)</div><div class="line">Sn = A(q + q^<span class="number">2</span> + q^<span class="number">3</span> + ... + q^n) ①</div><div class="line">q * Sn = A[q^<span class="number">2</span> + q^<span class="number">3</span> +  q^<span class="number">4</span> + ... + q^(n+<span class="number">1</span>)] ②</div><div class="line">② - ①</div><div class="line">q * Sn - Sn = A[q^<span class="number">2</span> + q^<span class="number">3</span> + q^<span class="number">4</span> + ... + q^(n+<span class="number">1</span>)] - A(q + q^<span class="number">2</span> + q^<span class="number">3</span> + ... + q^n)</div><div class="line">(q - <span class="number">1</span>)Sn = A[q^(n+<span class="number">1</span>) - q]</div><div class="line">Sn = Aq(q^n <span class="number">-1</span>) / (q - <span class="number">1</span>)</div></pre></td></tr></table></figure> 
+<h2 id="等比通项式"><a href="#等比通项式" class="headerlink" title="等比通项式"></a>等比通项式</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">设q = (<span class="number">1</span> + i)</div><div class="line">Sn = A(q + q^<span class="number">2</span> + q^<span class="number">3</span> + ... + q^n) ①</div><div class="line">q * Sn = A[q^<span class="number">2</span> + q^<span class="number">3</span> +  q^<span class="number">4</span> + ... + q^(n+<span class="number">1</span>)] ②</div><div class="line">② - ①</div><div class="line">q * Sn - Sn = A[q^<span class="number">2</span> + q^<span class="number">3</span> + q^<span class="number">4</span> + ... + q^(n+<span class="number">1</span>)] - A(q + q^<span class="number">2</span> + q^<span class="number">3</span> + ... + q^n)</div><div class="line">(q - <span class="number">1</span>)Sn = A[q^(n+<span class="number">1</span>) - q]</div><div class="line">Sn = Aq(q^n - <span class="number">1</span>) / (q - <span class="number">1</span>)</div></pre></td></tr></table></figure> 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/19/savings/" data-id="cje1h9z860002lfjfjdi6lmuy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/19/savings/" data-id="cje1hcip10002n6jf6u65r1ik" class="article-share-link">Share</a>
       
       
     </footer>
@@ -131,7 +131,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/08/blog/" data-id="cje1h9z840001lfjfb31ykrmq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/08/blog/" data-id="cje1hciov0000n6jfmtdmjow0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -176,7 +176,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/01/01/hello-world/" data-id="cje1h9z810000lfjff6g78r5d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/01/01/hello-world/" data-id="cje1hcioz0001n6jf5rqj0das" class="article-share-link">Share</a>
       
       
     </footer>
