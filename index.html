@@ -83,13 +83,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h3><p><img src="/Users/liangou/Workspace/blog/source/blockchain/state.png" alt="状态转移"><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">从技术角度来说, 这加密货币的账本，如比特币可以被看作为一个状态转移的系统, 在这个系统里, 有一个包含了现在所有已存在的比特币的持有者的状态，并且有一个“状态转移函数”可以使用一 个状态和一个交易来产生一个新的状态。在一个标准的银行体系里, 这状态就是一个资产负债表, 当一个交易要求把 X$的钱，从 A 转移到 B 时， 那么它的状态转移函数就会从 A 的账户中减去数量 为$X 的金额，然后在 B 的账户中增加数量为$X 的金额。如果 A 的账户中没有$X 的钱，那么状态转 移函数就会返回一个错误。所以，我们可以做如下定义:</div><div class="line"><span class="comment">//使用一个状态和一个交易才生一个新状态，或者返回错误</span></div><div class="line">APPLY(S,TX) -&gt; S' or ERROR</div><div class="line">在银行系统中，它可以定义成这样:</div><div class="line">APPLY(&#123; Alice: $<span class="number">50</span>, Bob: $<span class="number">50</span> &#125;,<span class="string">"send $20 from Alice to Bob"</span>) = &#123; Alice: $<span class="number">30</span>, Bob: $<span class="number">70</span> &#125; 或者:</div><div class="line">APPLY(&#123; Alice: $<span class="number">50</span>, Bob: $<span class="number">50</span> &#125;,<span class="string">"send $70 from Alice to Bob"</span>) = ERROR</div><div class="line">这“状态” 在比特币中是指所有的已经被挖出的但是还没消费的硬币的集合 (技术上, “没有被花 掉的交易的产出(unspent transaction outputs)” 或 UTXO) ，每个 UTXO 都有一个面值和一个持 有者 (持有者是由 <span class="number">20</span> 个字节组成的地址，其本质是一个加密的公钥). 一个交易包含了一个或多个 输入，每一个输入都包含了对一个已存在的 UTXO 的引用，和用持有者的地址所关联着的私钥来产生 的一个加密签名, 并且会产生一个或多个输出, 每一个输出包含一个用于添加到状态的新的 UTXO。</div><div class="line">这状态转移函数 APPLY(S,TX) -&gt; S' 可以被大概的定义如下:</div><div class="line"><span class="number">1.</span> 在 TX 中的每个输入:</div><div class="line">o 如果被引用的UTXO不在S里，返回一个错误.</div><div class="line">o 如果提供的签名和UTXO的所有者匹配不上,返回一个错误.</div><div class="line">2. 如果所有的输入的 UTXO 的面值的和少于所有输出的 UTXO 的面值的和，返回一个错误. 3. 返回一个所有输入的 UTXO 都被移除的，所有输出的 UTXO 都被加进的新的 S' .</div><div class="line">第一个步骤的前半部分防止交易的发送方消费不存在的硬币, 第一步骤的后半部分阻止了交易的发 送方使用别人的硬币, 第二个步骤是强制的价值保护。为了使用这种支付方式，协议如下。 假设 Alice 想发送 <span class="number">11.7</span> BTC 给 Bob. 首先, Alice 要找到一组她自己拥有的有效的 UTXO ，且总数要至 少不低于 <span class="number">11.7</span> BTC. 实际上, Alice 不会恰巧刚好拥有 <span class="number">11.7</span> BTC; 她得到的最小值是 <span class="number">6</span>+<span class="number">4</span>+<span class="number">2</span>=<span class="number">12</span>， 她然后使用这 <span class="number">3</span> 个输入和 <span class="number">2</span> 个输出创建了一个交易。 这第一个输出是 <span class="number">11.7</span> BTC ，是输出 Bob,第 二个输出是剩下的 <span class="number">0.3</span> BTC “找零”。如果 Alice 没有要求把这个找零发送到她自己的账户上, 那么这矿工可以要求拥有这个零钱.</div></pre></td></tr></table></figure></p>
-<h3 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h3><h3 id="挖矿"><a href="#挖矿" class="headerlink" title="挖矿"></a>挖矿</h3><p><img src="/Users/liangou/Workspace/blog/source/blockchain/block_content.png" alt="区块链内部结构"></p>
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h3><p><img src="../blockchain/state.png" alt="状态转移"><br>从技术角度来说, 这加密货币的账本，如比特币可以被看作为一个状态转移的系统, 在这个系统里, 有一个包含了现在所有已存在的比特币的持有者的状态，并且有一个“状态转移函数”可以使用一 个状态和一个交易来产生一个新的状态。在一个标准的银行体系里, 这状态就是一个资产负债表, 当一个交易要求把 X$的钱，从 A 转移到 B 时， 那么它的状态转移函数就会从 A 的账户中减去数量 为$X 的金额，然后在 B 的账户中增加数量为$X 的金额。如果 A 的账户中没有$X 的钱，那么状态转 移函数就会返回一个错误。所以，我们可以做如下定义:<br>//使用一个状态和一个交易才生一个新状态，或者返回错误<br>APPLY(S,TX) -&gt; S’ or ERROR<br>在银行系统中，它可以定义成这样:<br>APPLY({ Alice: $50, Bob: $50 },”send $20 from Alice to Bob”) = { Alice: $30, Bob: $70 } 或者:<br>APPLY({ Alice: $50, Bob: $50 },”send $70 from Alice to Bob”) = ERROR<br>这“状态” 在比特币中是指所有的已经被挖出的但是还没消费的硬币的集合 (技术上, “没有被花 掉的交易的产出(unspent transaction outputs)” 或 UTXO) ，每个 UTXO 都有一个面值和一个持 有者 (持有者是由 20 个字节组成的地址，其本质是一个加密的公钥). 一个交易包含了一个或多个 输入，每一个输入都包含了对一个已存在的 UTXO 的引用，和用持有者的地址所关联着的私钥来产生 的一个加密签名, 并且会产生一个或多个输出, 每一个输出包含一个用于添加到状态的新的 UTXO。<br>这状态转移函数 APPLY(S,TX) -&gt; S’ 可以被大概的定义如下:</p>
+<ol>
+<li>在 TX 中的每个输入:<br>o 如果被引用的UTXO不在S里，返回一个错误.<br>o 如果提供的签名和UTXO的所有者匹配不上,返回一个错误.</li>
+<li>如果所有的输入的 UTXO 的面值的和少于所有输出的 UTXO 的面值的和，返回一个错误. 3. 返回一个所有输入的 UTXO 都被移除的，所有输出的 UTXO 都被加进的新的 S’ .<br>第一个步骤的前半部分防止交易的发送方消费不存在的硬币, 第一步骤的后半部分阻止了交易的发 送方使用别人的硬币, 第二个步骤是强制的价值保护。为了使用这种支付方式，协议如下。 假设 Alice 想发送 11.7 BTC 给 Bob. 首先, Alice 要找到一组她自己拥有的有效的 UTXO ，且总数要至 少不低于 11.7 BTC. 实际上, Alice 不会恰巧刚好拥有 11.7 BTC; 她得到的最小值是 6+4+2=12， 她然后使用这 3 个输入和 2 个输出创建了一个交易。 这第一个输出是 11.7 BTC ，是输出 Bob,第 二个输出是剩下的 0.3 BTC “找零”。如果 Alice 没有要求把这个找零发送到她自己的账户上, 那么这矿工可以要求拥有这个零钱.<h3 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h3></li>
+</ol>
+<h3 id="挖矿"><a href="#挖矿" class="headerlink" title="挖矿"></a>挖矿</h3><p><img src="../blockchain/block_content.png" alt="区块链内部结构"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/28/blockchain/" data-id="cje6u31sp0000zrru3i2a3g7j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/02/28/blockchain/" data-id="cje6wrpcy0000drfykjda7k1k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -126,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/19/savings/" data-id="cje6u31sw0003zrru9drdyn8u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/19/savings/" data-id="cje6wrpd50003drfyyaaldi7d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -169,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/08/blog/" data-id="cje6u31ss0001zrru2u4vwgyq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/08/blog/" data-id="cje6wrpd10001drfyazvkrogw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/01/01/hello-world/" data-id="cje6u31sv0002zrruhbz8sbpd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/01/01/hello-world/" data-id="cje6wrpd40002drfych8k00iq" class="article-share-link">Share</a>
       
       
     </footer>
